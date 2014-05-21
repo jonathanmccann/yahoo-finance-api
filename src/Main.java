@@ -6,29 +6,32 @@ import java.net.URLConnection;
 public class Main {
     public static void main (String[] args) {
 		try {
-			URL yahooFinanceURL = new URL("http://finance.yahoo.com/d/quotes.csv?s=GE+JNJ&f=nl1oc6p2qr1");
+			for (String arguments : args) {
+				URL yahooFinanceURL = new URL("http://finance.yahoo.com/d/quotes.csv?s=" + arguments + "&f=l1oc6p2qr1mn");
 
-			URLConnection urlConnection = yahooFinanceURL.openConnection();
+				URLConnection urlConnection = yahooFinanceURL.openConnection();
 
-			BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+				BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-			String inputLine;
+				String inputLine;
 
-			while ((inputLine = br.readLine()) != null) {
-				String[] stockInformation = inputLine.split(",");
+				while ((inputLine = br.readLine()) != null) {
+					String[] stockInformation = inputLine.split(",");
 
-				System.out.println("Name - " + stockInformation[0].replace("\"", "").trim());
-				System.out.println("Last Trade (Price) - " + stockInformation[1]);
-				System.out.println("Open - " + stockInformation[2]);
-				System.out.println("Change - " + stockInformation[3].replace("\"", ""));
-				System.out.println("Percent Change - " + stockInformation[4].replace("\"", ""));
-				System.out.println("Ex-Dividend Date - " + stockInformation[5].replace("\"", ""));
-				System.out.println("Dividend Pay Date - " + stockInformation[6].replace("\"", ""));
+					System.out.println("Name - " + stockInformation[7].replace("\"", "").trim());
+					System.out.println("Last Trade - $" + stockInformation[0]);
+					System.out.println("Open - $" + stockInformation[1]);
+					System.out.println("Change - " + stockInformation[2].replace("\"", ""));
+					System.out.println("Percent Change - " + stockInformation[3].replace("\"", ""));
+					System.out.println("Ex-Dividend Date - " + stockInformation[4].replace("\"", ""));
+					System.out.println("Dividend Pay Date - " + stockInformation[5].replace("\"", ""));
+					System.out.println("Day's Range - " + stockInformation[6].replace("\"", ""));
 
-				System.out.println();
+					System.out.println();
+				}
+
+				br.close();
 			}
-
-			br.close();
 		}
 		catch (Exception e) {
 			System.out.println("Could not access URL");
