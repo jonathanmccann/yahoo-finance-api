@@ -100,26 +100,41 @@ public class Stock {
 
 	public static void setStocks(String[] stockTickers) {
 		try {
-			for (String stockTicker : stockTickers) {
-				URL yahooFinanceURL = new URL(
-					_YAHOO_URL_START + stockTicker + _YAHOO_URL_END);
+			StringBuilder sb = new StringBuilder(stockTickers.length * 2);
 
-				URLConnection urlConnection = yahooFinanceURL.openConnection();
+			for (int i = 0; i < stockTickers.length; i++) {
+				sb.append(stockTickers[i]);
 
-				BufferedReader br = new BufferedReader(
-					new InputStreamReader(urlConnection.getInputStream()));
+				if ((i + 1) < stockTickers.length) {
+					sb.append("+");
+				}
+			}
 
-				String[] stockInformation = br.readLine().split(",");
+			URL yahooFinanceURL = new URL(
+				_YAHOO_URL_START + sb + _YAHOO_URL_END);
+
+			URLConnection urlConnection = yahooFinanceURL.openConnection();
+
+			BufferedReader br = new BufferedReader(
+				new InputStreamReader(urlConnection.getInputStream()));
+
+			String inputLine = "";
+			int count = 0;
+
+			while ((inputLine = br.readLine()) != null) {
+				String[] stockInformation = inputLine.split(",");
 
 				stocks.put(
-					stockTicker,
+					stockTickers[count],
 					parseStockInformation(stockInformation));
 
-				br.close();
+				count++;
 			}
+
+			br.close();
 		}
 		catch (Exception e) {
-			System.out.println("Could not access URL");
+			throw new RuntimeException("Could not access URL", e);
 		}
 	}
 
