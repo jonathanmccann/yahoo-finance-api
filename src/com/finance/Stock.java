@@ -58,7 +58,7 @@ public class Stock {
 		return tickerSymbol;
 	}
 
-	public Map<String, Stock> getStocks() {
+	public static Map<String, Stock> getStocks() {
 		return stocks;
 	}
 

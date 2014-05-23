@@ -1,5 +1,6 @@
 package com.test;
 
+import com.finance.Stock;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,6 +14,9 @@ public class YahooFinanceAPITestSuite {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
+		String[] stockTickers = {"AAPL", "GOOG"};
+
+		Stock.setStocks(stockTickers);
 	}
 
 	@AfterClass

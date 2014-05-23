@@ -1,8 +1,8 @@
 package com.test;
 
-import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
 
-import com.finance.Main;
 import com.finance.Stock;
 import org.junit.Test;
 
@@ -10,13 +10,17 @@ public class StockInformationTest {
 
 	@Test
 	public void testGetStockInformation() {
-		/*String[] stockTickers = {"AAPL+GOOG"};
+		Map<String, Stock> stocks = Stock.getStocks();
 
-		Stock.setStocks(stockTickers);
+		assert(stocks.size() == 2);
 
-		List<Stock> stocks = Stock.getStocks();
+		Iterator it = stocks.entrySet().iterator();
 
-		for (Stock stock : stocks) {
+		while (it.hasNext()) {
+			Map.Entry stockPair = (Map.Entry)it.next();
+
+			Stock stock = (Stock)stockPair.getValue();
+
 			System.out.println("Stock name: " + stock.getName());
 			System.out.println("Last Trade: " + stock.getLastTrade());
 			System.out.println("Open: " + stock.getOpen());
@@ -27,6 +31,6 @@ public class StockInformationTest {
 			System.out.println("Day's Range: " + stock.getDayRange());
 
 			System.out.println();
-		}*/
+		}
 	}
 }
