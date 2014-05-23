@@ -4,7 +4,6 @@
 /classes
 /out
 /dist
-/lib
 
 /src/config.properties
 /src/users.txt
