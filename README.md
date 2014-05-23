@@ -21,6 +21,8 @@ java -jar yahoo-finance-api.jar APPL+GOOG
 Configuration Files
 =================
 
+These two files should be added to the same directory as the runnable .jar file created from the build script:
+
 **config.properties** (The e-mail address and password are used to connect to a mail client to send out the e-mail digests):
 
 email.address=  
