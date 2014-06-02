@@ -37,6 +37,19 @@
     <mkdir dir="${classes}"/>
   </target>
 
+  <target name="junit" depends="dist">
+    <junit printsummary="yes">
+      <classpath>
+        <path refid="classpath" />
+        <path location="${dist}/yahoo-finance-api.jar" />
+      </classpath>
+      
+      <test name="com.test.YahooFinanceAPITestSuite" haltonfailure="no" outfile="testResults">
+        <formatter type="xml"/>
+      </test>
+    </junit>
+  </target>
+
   <target name="run" depends="dist">
     <java fork="true" classname="Main">
       <classpath>

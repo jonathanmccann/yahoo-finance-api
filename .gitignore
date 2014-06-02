@@ -5,6 +5,8 @@
 /out
 /dist
 
+/testResults.xml
+
 /src/config.properties
 /src/users.txt
 /src/META-INF
